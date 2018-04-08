@@ -3,6 +3,10 @@ package com.sl.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.sl.common.pojo.DataGridResult;
 import com.sl.mapper.TbItemMapper;
 import com.sl.pojo.TbItemExample.Criteria;
 import com.sl.pojo.TbItem;
@@ -39,6 +43,26 @@ public class ItemServiceImpl implements ItemService {
 	return null;
 	
 		
+	}
+
+	@Override
+	public DataGridResult getItemList(int page, int rows) {
+		
+		TbItemExample example =new TbItemExample();
+		
+		PageHelper.startPage(page, rows);
+		
+	  	List<TbItem> list = itemMapper.selectByExample(example);
+	  	
+	  	//创建返回对象
+	  	DataGridResult result = new DataGridResult();
+	  	result.setRows(list);
+	  	//取总条数
+	  	PageInfo<TbItem> pageInfo = new PageInfo<>(list);
+	  	result.setTotal(pageInfo.getTotal());
+	  	
+	  	return result;
+	  	
 	}
 
 }

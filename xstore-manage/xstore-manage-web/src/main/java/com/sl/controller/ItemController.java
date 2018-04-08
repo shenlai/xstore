@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sl.common.pojo.DataGridResult;
 import com.sl.pojo.TbItem;
 import com.sl.service.ItemService;
 
@@ -29,5 +30,14 @@ public class ItemController {
 		TbItem tbItem = itemService.geTbItemById(itemId);
 		
 		return tbItem;
+	}
+	
+	@RequestMapping("/item/list")
+	@ResponseBody
+	public DataGridResult getItemList(int page,int rows) {
+		
+		DataGridResult itemList = itemService.getItemList(page, rows);
+		
+		return itemList;
 	}
 }
