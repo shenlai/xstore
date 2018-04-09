@@ -61,7 +61,6 @@ build/
 ## .gitignore for eclipse
 
 *.pydevproject
-.project
 .metadata
 bin/**
 tmp/**
