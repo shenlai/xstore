@@ -23,26 +23,22 @@ public class ItemCatServiceImpl implements ItemCatService {
 	@Override
 	public CatResult getItemCatList() {
 		CatResult catResult = new CatResult();
-		//查询分类列表
 		catResult.setData(getCatList(0));
 		
 		return catResult;
 	}
 	
 	private List<?> getCatList(long parentId){
-		//查询条件
 		TbItemCatExample example = new TbItemCatExample();
 
         Criteria criteria = example.createCriteria();
         
         criteria.andParentIdEqualTo(parentId);
-        //执行
         List<TbItemCat> list =itemCatMapper.selectByExample(example);
         List resultList = new ArrayList<>();
         
         for(TbItemCat tbItemCat:list)
         {
-        	//是否是父节点
         	if(tbItemCat.getIsParent()){
         		CatNode catNode =new CatNode();
         		if(parentId==0) {
@@ -55,7 +51,6 @@ public class ItemCatServiceImpl implements ItemCatService {
                  catNode.setItem(getCatList(tbItemCat.getId()));
                  resultList.add(catNode);
         	}else {
-        		//叶节点
         		 resultList.add("/products/"+tbItemCat.getId()+".html|" + tbItemCat.getName());
         	}
         }

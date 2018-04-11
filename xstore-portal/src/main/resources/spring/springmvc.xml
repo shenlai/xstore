@@ -8,16 +8,16 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 <!-- 包扫描器 -->
-	<context:component-scan base-package="com.sl.rest.controller" />
+	<context:component-scan base-package="com.sl.portal.controller" />
 	
 	<!-- 注解驱动 -->
 	<mvc:annotation-driven />
 	
 	<!-- 视图解析器  无jsp，不需要配置，使用springmvc默认配置-->
-	<!-- <bean
+	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
-	</bean> -->
+	</bean>
 	
 </beans>

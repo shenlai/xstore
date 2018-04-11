@@ -19,10 +19,10 @@ public class ItemCatController {
 	@ResponseBody
 	public String getItemCatList(String callback) {
 		CatResult catResult =itemCatService.getItemCatList();
-		//pojo转字符串
+		
 		String jsonStr = JsonUtils.objectToJson(catResult);
 		
-		//拼装返回值
+		
         String result = callback + "(" + jsonStr + ");";
         return result;	
 	}
